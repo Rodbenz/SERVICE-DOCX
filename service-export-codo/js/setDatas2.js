@@ -141,7 +141,7 @@ function setDataReport14(data) {
         el.VAL = numberWithCommas(el.VAL_AMT_P_MET) != '0' ? numberWithCommas(el.VAL_AMT_P_MET) : "-";
         el.VAL_AMT = numberWithCommas(el.VAL_AMT_P_MET) != '0' ? numberWithCommas(convertTens(el.VAL_AMT_P_MET)) : "-";
         el.INDEX_ = el.INDEX_ADJ != '0' ? el.INDEX_ADJ : "-";
-        if (el.USE_CATG.indexOf("พื้นที่ทรัพย์ส่วนกลาง") || el.USE_CATG.indexOf("ที่จอดรถยนต์ส่วนบุคคล")) {
+        if (el.USE_CATG.indexOf("พื้นที่ทรัพย์ส่วนกลาง") === 0 || el.USE_CATG.indexOf("ที่จอดรถยนต์ส่วนบุคคล") === 0) {
             let BEFORE_VAL = "-";
             el.BEFORE_VAL = BEFORE_VAL
         } else {
@@ -155,15 +155,21 @@ function setDataReport14(data) {
     return newData;
 }
 function setDataReport15(data) {
+    let obj = new Object();
     let newData = [];
     let sum_val_price = 0;
     let sum_area_room = 0;
     Array.isArray(data) && data.forEach((el, index) => {
-        if (el.USE_CATG.indexOf("พื้นที่ทรัพย์ส่วนกลาง") || el.USE_CATG.indexOf("ที่จอดรถยนต์ส่วนบุคคล")) {
+        if (el.USE_CATG.indexOf("พื้นที่ทรัพย์ส่วนกลาง") === 0 || el.USE_CATG.indexOf("ที่จอดรถยนต์ส่วนบุคคล") === 0 ) {
             el.BUILD_NAME == "-" ? "" : el.BUILD_NAME;
+            el.COUNT_ID = "-"
+            el.SUM_AREA = "-"
+            el.VAL = "-"
+            el.VAL_AMT = "-"
         } else {
-            el.COUNT_COND_H_ID = numberWithCommas(el.COUNT_COND_H_ID);
-            el.SUM_PERSONAL_P_AREA = numberWithCommas(el.SUM_PERSONAL_P_AREA.toFixed(2));
+            el.BUILD_NAME == "-" ? "" : el.BUILD_NAME;
+            el.COUNT_ID = numberWithCommas(el.COUNT_COND_H_ID);
+            el.SUM_AREA = numberWithCommas(el.SUM_PERSONAL_P_AREA.toFixed(2));
             el.VAL = numberWithCommas(Math.round(el.VAL_AMT_P_MET));
             el.VAL_AMT = numberWithCommas(Math.round(Number(el.VAL_AMT_P_MET) * Number(el.SUM_PERSONAL_P_AREA)));
         }
@@ -176,8 +182,11 @@ function setDataReport15(data) {
         }
         newData.push(el);
     })
-    console.log(newData, sum_area_room, sum_val_price);
-    return newData;
+    obj.CONDO_VAL = numberWithCommas(sum_val_price.toFixed(2));
+    obj.AREA_ALL = numberWithCommas(sum_area_room.toFixed(2));
+    obj.arr = newData;
+    // console.log(newData, sum_area_room, sum_val_price);
+    return obj;
 }
 module.exports = {
     setDataReport2_3,

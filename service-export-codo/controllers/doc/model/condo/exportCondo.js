@@ -131,6 +131,10 @@ const modelData = async (data) => {
         arr13: res13_1,
         // report 14
         arr14: res14,
+        // report 15
+        CONDO_VAL: res15.CONDO_VAL,
+        AREA_ALL: res15.AREA_ALL,
+        arr15: res15.arr,
     }
     // console.log(model, "model")
     return model
