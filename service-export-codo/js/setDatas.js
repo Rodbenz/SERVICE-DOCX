@@ -72,9 +72,9 @@ function setDataCondoBUildAreaReport2(data) {
         let dataItem = data[i];
         dataItem.TYPE_NAME = dataItem.BUILDING_TYPE_NAME;
         dataItem.NAME = `${str}${dataItem.BUILDING_TYPE_NAME}`;
-        dataItem.RAR = numberWithCommas(dataItem.ROOM_AREA.toFixed(2));
-        dataItem.BAR = numberWithCommas(dataItem.BUILD_AREA.toFixed(2));
-        dataItem.RARN = numberWithCommas(dataItem.ROOM_AREA_NOTCAR.toFixed(2));
+        dataItem.RAR = dataItem.ROOM_AREA ? numberWithCommas(dataItem.ROOM_AREA.toFixed(2)) : "0.00";
+        dataItem.BAR = dataItem.BUILD_AREA ? numberWithCommas(dataItem.BUILD_AREA.toFixed(2)) : "0.00";
+        dataItem.RARN = dataItem.ROOM_AREA_NOTCAR ? numberWithCommas(dataItem.ROOM_AREA_NOTCAR.toFixed(2)): "0.00";
         costbuild = costbuild + Number(dataItem.BUILD_AREA);
         costbuild = costbuild + Number(dataItem.BUILD_AREA);
         costarea = costarea + Number(dataItem.ROOM_AREA);

@@ -50,7 +50,7 @@ const numberTens = (x) => {
 }
 
 function convertTens(x) {
-    console.log(x);
+    // console.log(x);
     if (x == "" || x == null || x == undefined) {
         return ""
     }

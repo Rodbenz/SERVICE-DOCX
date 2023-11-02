@@ -85,9 +85,9 @@ function setHeaderReport9_1(data) {
     let newHeader = "";
     Array.isArray(data) && data.forEach((el, index) => {
         if (index == 0) {
-            newHeader = el.PERSONAL_P_NAME;
+            newHeader = el.PERSONAL_P_NAME ? el.PERSONAL_P_NAME.substring(7): "";
         } else {
-            newHeader += `/${el.PERSONAL_P_NAME}`;
+            newHeader += el.PERSONAL_P_NAME ? `/${el.PERSONAL_P_NAME.substring(7)}`: "";
         }
     })
     // console.log(newHeader);
